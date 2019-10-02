@@ -21,24 +21,24 @@ public class Controller implements ActionListener {
 	private JTextArea annTextArea;
 	private JTable table;
 	private DefaultTableModel model;
-	private DatabaseController control;
-	private CommandFactory factory = new CommandFactory();
+	private DatabaseController databaseController;
+	private CommandFactory commandFactory = new CommandFactory();
 	private AnnouncementBoard  board= AnnouncementBoard.getInstance();
 
-	public Controller(JTextField argumentsTextField, JTextArea ann,JTable table, DefaultTableModel model, DatabaseController control) {
+	public Controller(JTextField argumentsTextField, JTextArea ann,JTable table, DefaultTableModel model, DatabaseController databaseController) {
 		super();
 		this.argumentsTextField = argumentsTextField;
 		this.annTextArea = ann;
 		this.table = table;
 		this.model = model;
-		this.control = control;
+		this.databaseController = databaseController;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String arguments = getCommandName(e)+" "+argumentsTextField.getText();
 		String[] args = arguments.split(" ");
-		Command command = factory.buildCommand(args);
+		Command command = commandFactory.buildCommand(args);
 
 		if(command == null) {
 			int row = table.getSelectedRow();
@@ -57,7 +57,7 @@ public class Controller implements ActionListener {
 			}
 			return;
 		}
-		control.runCommand(command);
+		databaseController.runCommand(command);
 
 		model.setDataVector(Model.getData(), Model.getHeaders());     
 	}

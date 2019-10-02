@@ -19,8 +19,8 @@ import database.Command.CustomerDatabase;
 public class View {
 	public View() {
 		Database db = new CustomerDatabase();
-		DatabaseController control = new DatabaseController(db);
-		control.load();
+		DatabaseController databaseController = new DatabaseController(db);
+		databaseController.load();
 
 		// Create views swing UI components 
 		JTextField argumentsTextField = new JTextField(26);
@@ -39,7 +39,7 @@ public class View {
 		table.setModel(model);
 
 		// Create controller
-		Controller controller = new Controller(argumentsTextField,announcements,table, model, control);
+		Controller controller = new Controller(argumentsTextField,announcements,table, model, databaseController);
 
 		insertButton.addActionListener(controller);
 		searchButton.addActionListener(controller);

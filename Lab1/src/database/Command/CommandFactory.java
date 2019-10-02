@@ -3,13 +3,20 @@ package database.Command;
 import java.util.Arrays;
 
 public class CommandFactory {
-	static private Command availableCommands[] = {
+	/**
+	 * Command that can be produced
+	 */
+	static private Command[] availableCommands = {
 			new DatabaseInsertCommand(), 
 			new DatabaseDeleteCommand(),
 			new DatabaseSearchCommand(),
 			new DatabaseUpdateCommand(),
 			new DatabasePrintCommand() 
 			};
+
+	/**
+	 * Default Constructor
+	 */
 	public CommandFactory(){
 		
 	}
@@ -22,6 +29,10 @@ public class CommandFactory {
 		}
 		return null;		
 	}
+
+	/**
+	 * Report possible commands
+	 */
 	public void printCommands() {
 		for(Command command: availableCommands) {
 			System.out.println(command.getCommandName());

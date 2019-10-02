@@ -1,9 +1,15 @@
 package database;
-
+/*
+* Interface for Database
+* */
 public interface Database {
-	public void insert(Entity a);
-	public int search(Entity a);
-	public void update(Entity a, Entity b);
-	public void delete(int id);
-	public Entity[] getData();
+	void insert(Entity a);
+
+	int search(Entity a);
+
+	void update(Entity a, Entity b);
+
+	void delete(int id);
+
+	Entity[] getData();
 }
