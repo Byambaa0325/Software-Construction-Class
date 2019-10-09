@@ -6,7 +6,7 @@ import database.Database;
 import database.Entity;
 
 @SuppressWarnings("serial")
-public class Model extends DefaultTableModel {
+public class TableDatabase extends DefaultTableModel {
 	/**
 	 * Headers for current model
 	 */
@@ -17,10 +17,10 @@ public class Model extends DefaultTableModel {
 	static Database db;
 
 	/**
-	 * Constructor to
-	 * @param d
+	 * Constructor
+	 * @param d database to construct from
 	 */
-	public Model(Database d) {
+	public TableDatabase(Database d) {
 		super(getData(d), getHeaders());
 	}
 
@@ -54,7 +54,7 @@ public class Model extends DefaultTableModel {
 
 	/**
 	 * Return headers
-	 * @return
+	 * @return the headers
 	 */
 	public static Object[] getHeaders() {
 		return HEADERS;

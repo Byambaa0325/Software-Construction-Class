@@ -26,24 +26,7 @@ public class Admin {
 			String arguments = input.nextLine();
 			if (arguments.equals("announce")) {
 				control.load();
-
-				System.out.println("Write the announcement below");
-				String content = input.nextLine();
-
-				System.out.println("Input the database index of the announcer");
-				int index = Integer.parseInt(input.nextLine());
-
-				Announcement ann = new Announcement(content);
-
-				if(index > db.getData().length) {
-					System.out.println("index not found in database");
-					continue;
-				}
-				Entity entity = db.getData()[index-1];
-				String object[] = entity.getObject();
-				Customer customer = new Customer(Integer.parseInt(object[0]),object[1]);
-
-				board.addAnnouncement(ann, customer);
+				addAnnouncement();
 				continue;
 			}
 			Command command = factory.buildCommand(arguments.split(" "));
@@ -59,6 +42,26 @@ public class Admin {
 			}
 		}
 		System.out.println("Exiting");
+	}
+	private static void addAnnouncement() {
+		System.out.println("Write the announcement below");
+		String content = input.nextLine();
+
+		System.out.println("Input the database index of the announcer");
+		int index = Integer.parseInt(input.nextLine());
+
+		Announcement ann = new Announcement(content);
+
+		if(index > db.getData().length) {
+			System.out.println("index not found in database");
+			return;
+		}
+		Entity entity = db.getData()[index-1];
+		String object[] = entity.getObject();
+		Customer customer = new Customer(Integer.parseInt(object[0]),object[1]);
+
+		board.addAnnouncement(ann, customer);
+		
 	}
 	private static void report() {
 		System.out.println("Announcement boards Commands");

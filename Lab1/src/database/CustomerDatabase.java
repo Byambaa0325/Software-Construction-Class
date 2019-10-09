@@ -25,7 +25,7 @@ public class CustomerDatabase implements Database{
 
 	/**
 	 * Insert Entity to database
-	 * @param toInsert
+	 * @param toInsert The object to be inserted
 	 */
 	public void insert(Entity toInsert) {
 		Customer customer = entityToCustomer(toInsert);
@@ -36,7 +36,7 @@ public class CustomerDatabase implements Database{
 
 	/**
 	 * Remove entity by id
-	 * @param id
+	 * @param id The id in database
 	 */
 	public void delete(int id) {
 		db.remove(id-1);
@@ -44,8 +44,8 @@ public class CustomerDatabase implements Database{
 
 	/**
 	 * Linear Search for Entity from database
-	 * @param toSearch
-	 * @return
+	 * @param toSearch Entity to be searched
+	 * @return the index in the database
 	 */
 	public int search(Entity toSearch) {
 		int index = 0;
@@ -60,8 +60,8 @@ public class CustomerDatabase implements Database{
 
 	/**
 	 * Update existing Entity with new Entity
-	 * @param old
-	 * @param update
+	 * @param old The old entity in the database
+	 * @param update the entity to replace the old entity
 	 */
 	public void update(Entity old, Entity update) {
 		int index = search(old)-1;
@@ -71,7 +71,7 @@ public class CustomerDatabase implements Database{
 
 	/**
 	 * Return data stored as Entity array
-	 * @return
+	 * @return array of entities
 	 */
 	public Entity[] getData() {
 		Entity[] toReturn = new Entity[db.size()];
@@ -83,9 +83,9 @@ public class CustomerDatabase implements Database{
 
 	/**
 	 * Private method to compare entities for this database
-	 * @param A
-	 * @param B
-	 * @return
+	 * @param A Entity A
+	 * @param B Entity B
+	 * @return boolean to denoting equality
 	 */
 	private boolean equals (Entity A, Entity B) {
 		if(A.getObject().length == B.getObject().length) {
@@ -103,8 +103,8 @@ public class CustomerDatabase implements Database{
 
 	/**
 	 * Construct customer from entity
-	 * @param toInsert
-	 * @return
+	 * @param toInsert the entity to be converted
+	 * @return the entity as customer
 	 */
 	private Customer entityToCustomer(Entity toInsert) {
 		Customer customer;//Single argument contructor
@@ -120,8 +120,8 @@ public class CustomerDatabase implements Database{
 
 	/**
 	 * Customer as string array
-	 * @param customer
-	 * @return
+	 * @param customer customer to be converted
+	 * @return string array of attributes
 	 */
 	private String[] customerToStringArray(Customer customer) {
 		return new String[]{

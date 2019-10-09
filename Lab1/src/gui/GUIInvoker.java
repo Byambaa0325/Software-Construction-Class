@@ -1,7 +1,7 @@
 package gui;
 import javax.swing.SwingUtilities;
 
-public class gui {
+public class GUIInvoker {
 	public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -15,6 +15,6 @@ public class gui {
     }
  
     public static void createAndShowGUI() throws Exception {
-        new View();
+        new GUI();
     }
 }

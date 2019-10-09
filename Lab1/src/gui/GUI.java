@@ -16,8 +16,9 @@ import database.Database;
 import database.DatabaseController;
 import database.CustomerDatabase;
 
-public class View {
-	public View() {
+public class GUI {
+	public GUI() {
+		//Load the Database and the Database controller
 		Database db = new CustomerDatabase();
 		DatabaseController databaseController = new DatabaseController(db);
 		databaseController.load();
@@ -26,7 +27,7 @@ public class View {
 		JTextField argumentsTextField = new JTextField(26);
 		JTextArea announcements = new JTextArea(20,26);
 		announcements.setEditable(false);
-
+		
 		JButton insertButton = new JButton("Insert");
 		JButton deleteButton = new JButton("Delete");
 		JButton updateButton = new JButton("Update");
@@ -35,12 +36,12 @@ public class View {
 		JTable table = new JTable();
 
 		// Create table model
-		Model model = new Model(db);
+		TableDatabase model = new TableDatabase(db);
 		table.setModel(model);
 
-		// Create controller
+		// Create controller and add listeners
 		Controller controller = new Controller(argumentsTextField,announcements,table, model, databaseController);
-
+		
 		insertButton.addActionListener(controller);
 		searchButton.addActionListener(controller);
 		deleteButton.addActionListener(controller);
@@ -56,8 +57,7 @@ public class View {
 		ctrlPane.add(searchButton);
 		ctrlPane.add(announceButton);
 
-
-
+		//Set the table layouts
 		JScrollPane tableScrollPane = new JScrollPane(table);
 		tableScrollPane.setPreferredSize(new Dimension(700, 182));
 		tableScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Customers",
@@ -73,7 +73,7 @@ public class View {
 		splitPane.setEnabled(false);
 
 		// Display it all in a scrolling window and make the window appear
-		JFrame frame = new JFrame("Swing MVC Demo");
+		JFrame frame = new JFrame("Customer Announcement Program");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(splitPane);
 		frame.pack();

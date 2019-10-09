@@ -31,15 +31,15 @@ public class DatabaseController {
 
 	/**
 	 * Constructor from database
-	 * @param database
+	 * @param database database to control
 	 */
 	public DatabaseController(Database database) {
 		db = database;
 	}
 
 	/**
-	 * Execture command received
-	 * @param command
+	 * Execute command received
+	 * @param command the command to be executed
 	 */
 	public void runCommand(Command command) {
 		if (!this.databaseLoaded) {
@@ -76,7 +76,7 @@ public class DatabaseController {
 
 	/**
 	 * Change current strategy
-	 * @param newStrategy
+	 * @param newStrategy replacing strategy
 	 */
 	public void changeStrategy(DatabaseSavingStrategy newStrategy) {
 		this.strategy = newStrategy;
@@ -84,7 +84,7 @@ public class DatabaseController {
 
 	/**
 	 * Return databaseName
-	 * @return
+	 * @return the name of the database
 	 */
 	public String getDatabaseName() {
 		return databaseName;
@@ -92,7 +92,7 @@ public class DatabaseController {
 
 	/**
 	 * Change databaseName
-	 * @param databaseName
+	 * @param databaseName replacing database name
 	 */
 	public void setDatabaseName(String databaseName) {
 		this.databaseName = databaseName;

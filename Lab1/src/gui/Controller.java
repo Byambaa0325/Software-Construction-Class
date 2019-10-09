@@ -59,7 +59,7 @@ public class Controller implements ActionListener {
 		}
 		databaseController.runCommand(command);
 
-		model.setDataVector(Model.getData(), Model.getHeaders());     
+		model.setDataVector(TableDatabase.getData(), TableDatabase.getHeaders());     
 	}
 	private String getCommandName(ActionEvent e) {
 		Object o = e.getSource();
