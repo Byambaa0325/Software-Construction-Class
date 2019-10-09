@@ -14,7 +14,7 @@ import javax.swing.border.TitledBorder;
 
 import database.Database;
 import database.DatabaseController;
-import database.Command.CustomerDatabase;
+import database.CustomerDatabase;
 
 public class View {
 	public View() {

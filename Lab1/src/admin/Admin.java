@@ -9,7 +9,7 @@ import database.DatabaseController;
 import database.Entity;
 import database.Command.Command;
 import database.Command.CommandFactory;
-import database.Command.CustomerDatabase;
+import database.CustomerDatabase;
 
 public class Admin {
 	static CustomerDatabase db = new CustomerDatabase();

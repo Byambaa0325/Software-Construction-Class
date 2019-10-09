@@ -1,4 +1,4 @@
-package database.Command;
+package database;
 
 import java.util.ArrayList;
 
