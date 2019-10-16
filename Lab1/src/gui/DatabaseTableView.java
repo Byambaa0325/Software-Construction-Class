@@ -6,7 +6,7 @@ import database.Database;
 import database.Entity;
 
 @SuppressWarnings("serial")
-public class TableDatabase extends DefaultTableModel {
+public class DatabaseTableView extends DefaultTableModel {
 	/**
 	 * Headers for current model
 	 */
@@ -20,7 +20,7 @@ public class TableDatabase extends DefaultTableModel {
 	 * Constructor
 	 * @param d database to construct from
 	 */
-	public TableDatabase(Database d) {
+	public DatabaseTableView(Database d) {
 		super(getData(d), getHeaders());
 	}
 

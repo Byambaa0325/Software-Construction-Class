@@ -11,15 +11,21 @@ import database.Entity;
  */
 public class CustomerDatabase implements Database{
 
+	private static final Database instance = new CustomerDatabase();
+	
+	public static Database getInstance() {
+		return instance;
+	}
+	
 	/**
-	 * Arraylist to store entities
+	 * ArrayList to store entities
 	 */
-	private ArrayList<Entity> db;
+	private static ArrayList<Entity> db;
 
 	/**
 	 * Default constructor
 	 */
-	public CustomerDatabase(){
+	private CustomerDatabase(){
 		db = new ArrayList<>();
 	}
 
@@ -107,7 +113,7 @@ public class CustomerDatabase implements Database{
 	 * @return the entity as customer
 	 */
 	private Customer entityToCustomer(Entity toInsert) {
-		Customer customer;//Single argument contructor
+		Customer customer;//Single argument constructor
 		if(toInsert.getObject().length==1) {
 			customer=new Customer(toInsert.getObject()[0]);
 		}
@@ -129,5 +135,7 @@ public class CustomerDatabase implements Database{
 				customer.getName()
 		};
 	}
+
+	
 
 }

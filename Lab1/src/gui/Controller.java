@@ -23,7 +23,7 @@ public class Controller implements ActionListener {
 	private DefaultTableModel model;
 	private DatabaseController databaseController;
 	private CommandFactory commandFactory = new CommandFactory();
-	private AnnouncementBoard  board= AnnouncementBoard.getInstance();
+	private AnnouncementBoard  board = AnnouncementBoard.getInstance();
 
 	public Controller(JTextField argumentsTextField, JTextArea ann,JTable table, DefaultTableModel model, DatabaseController databaseController) {
 		super();
@@ -36,30 +36,49 @@ public class Controller implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String arguments = getCommandName(e)+" "+argumentsTextField.getText();
-		String[] args = arguments.split(" ");
+		String[] args = (getCommandName(e)+" "+argumentsTextField.getText()).split(" ");
 		Command command = commandFactory.buildCommand(args);
 
 		if(command == null) {
-			int row = table.getSelectedRow();
-			if(row == -1) {
-				return;
-			}
-			int id = Integer.parseInt((String) table.getValueAt(row, 0));
-			String name = (String) table.getValueAt(row, 1);
-			Announcement announcement = new Announcement(argumentsTextField.getText());
-			Customer customer = new Customer(id, name);
-			board.addAnnouncement(announcement, customer);
-			String[] announcements = board.printStrings();
-			annTextArea.setText("");
-			for(String line : announcements) {
-				annTextArea.append(line+"\n");
-			}
+			announceCommand();
 			return;
 		}
 		databaseController.runCommand(command);
 
-		model.setDataVector(TableDatabase.getData(), TableDatabase.getHeaders());     
+		model.setDataVector(DatabaseTableView.getData(), DatabaseTableView.getHeaders());     
+	}
+
+	private void announceCommand() {
+		int row = table.getSelectedRow();
+		if(row == -1) {
+			return;
+		}
+		updateBoardByRow(row);
+		updateAnnTextArea();
+	}
+
+	private void updateBoardByRow(int row) {
+		Customer customer = buildCustomer(row);
+		Announcement announcement = getAnnouncement();
+		board.addAnnouncement(announcement, customer);
+	}
+
+	private void updateAnnTextArea() {
+		String[] announcements = board.printStrings();
+		annTextArea.setText("");
+		for(String line : announcements) {
+			annTextArea.append(line+"\n");
+		}
+	}
+
+	private Customer buildCustomer(int row) {
+		int id = Integer.parseInt((String) table.getValueAt(row, 0));
+		String name = (String) table.getValueAt(row, 1);
+		Customer customer = new Customer(id, name);
+		return customer;
+	}
+	private Announcement getAnnouncement() {
+		return new Announcement(argumentsTextField.getText());
 	}
 	private String getCommandName(ActionEvent event) {
 		Object obj = event.getSource();

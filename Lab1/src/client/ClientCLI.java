@@ -1,4 +1,4 @@
-package admin;
+package client;
 
 import java.util.Scanner;
 
@@ -10,9 +10,10 @@ import database.command.factory.CommandFactory;
 import databasecontroller.DatabaseController;
 import database.Command;
 import database.CustomerDatabase;
+import database.Database;
 
-public class Admin {
-	static CustomerDatabase db = new CustomerDatabase();
+public class ClientCLI {
+	static Database db = CustomerDatabase.getInstance();
 	static DatabaseController control = new DatabaseController(db);
 	static CommandFactory factory = new CommandFactory();
 	static Scanner input = new Scanner(System.in);

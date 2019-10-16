@@ -22,7 +22,7 @@ public class DatabaseController {
 
 	/**
 	 * Strategy for interacting with files
-	 * P.S: default is textfile
+	 * P.S: default is text file
 	 */
 	private DatabaseSavingStrategy strategy = new TextFileStrategy();
 
@@ -66,7 +66,6 @@ public class DatabaseController {
 		this.databaseLoaded = true;
 		Entity[] data = this.strategy.read(this.databaseName,db);
 		if(data == null) {
-			//TODO Throws exception
 			System.out.println("No entry in database");
 		}
 		else {

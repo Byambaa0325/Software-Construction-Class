@@ -3,6 +3,7 @@ package database;
 * Interface for Database
 * */
 public interface Database {
+	
 	void insert(Entity a);
 
 	int search(Entity a);

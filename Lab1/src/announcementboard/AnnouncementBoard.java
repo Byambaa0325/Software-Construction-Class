@@ -12,15 +12,13 @@ public class AnnouncementBoard {
 	private static Map<String,String> announcements;
 	private static final AnnouncementBoard instance = new AnnouncementBoard();
 	private AnnouncementBoard() {
-		//this.list= new ArrayList<>();
 		announcements = new HashMap<>();
 	}
 	public static AnnouncementBoard getInstance() {
 		return instance;
 	}
 	public void addAnnouncement(Announcement a, Customer customer){
-		announcements.put(a.getContent(), customer.getName());
-		//list.add(a);		
+		announcements.put(a.getContent(), customer.getName());	
 	}
 	public void printAnnouncements() {
 		for(String announcement : announcements.keySet()) {

@@ -19,7 +19,7 @@ import database.CustomerDatabase;
 public class SinglePageGUI {
 	public SinglePageGUI() {
 		//Load the Database and the Database controller
-		Database db = new CustomerDatabase();
+		Database db = CustomerDatabase.getInstance();
 		DatabaseController databaseController = new DatabaseController(db);
 		databaseController.load();
 
@@ -36,7 +36,7 @@ public class SinglePageGUI {
 		JTable table = new JTable();
 
 		// Create table model
-		TableDatabase model = new TableDatabase(db);
+		DatabaseTableView model = new DatabaseTableView(db);
 		table.setModel(model);
 
 		// Create controller and add listeners
