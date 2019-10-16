@@ -8,9 +8,12 @@ import data.Announcement;
 import data.Customer;
 
 public class AnnouncementBoard {
-	//private ArrayList<Announcement> list;
+	
 	private static Map<String,String> announcements;
+
+	//Singleton
 	private static final AnnouncementBoard instance = new AnnouncementBoard();
+	
 	private AnnouncementBoard() {
 		announcements = new HashMap<>();
 	}
