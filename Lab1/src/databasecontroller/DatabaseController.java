@@ -1,8 +1,10 @@
-package database;
+package databasecontroller;
 
-import database.Command.Command;
-import database.WritingStrategy.DatabaseSavingStrategy;
-import database.WritingStrategy.TextFileStrategy;
+import database.Command;
+import database.Database;
+import database.DatabaseSavingStrategy;
+import database.Entity;
+import database.writingstrategy.TextFileStrategy;
 
 /**
  * Database controller for interacting with database

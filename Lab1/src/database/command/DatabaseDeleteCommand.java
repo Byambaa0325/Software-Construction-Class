@@ -1,5 +1,6 @@
-package database.Command;
+package database.command;
 
+import database.Command;
 import database.Database;
 
 public class DatabaseDeleteCommand implements Command {

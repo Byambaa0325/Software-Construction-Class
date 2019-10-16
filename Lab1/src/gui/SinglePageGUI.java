@@ -13,11 +13,11 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import database.Database;
-import database.DatabaseController;
+import databasecontroller.DatabaseController;
 import database.CustomerDatabase;
 
-public class GUI {
-	public GUI() {
+public class SinglePageGUI {
+	public SinglePageGUI() {
 		//Load the Database and the Database controller
 		Database db = new CustomerDatabase();
 		DatabaseController databaseController = new DatabaseController(db);

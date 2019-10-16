@@ -1,8 +1,11 @@
-package data;
+package announcementboard;
 
 //import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import data.Announcement;
+import data.Customer;
 
 public class AnnouncementBoard {
 	//private ArrayList<Announcement> list;

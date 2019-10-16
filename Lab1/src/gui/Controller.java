@@ -8,12 +8,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import announcementboard.AnnouncementBoard;
 import data.Announcement;
-import data.AnnouncementBoard;
 import data.Customer;
-import database.DatabaseController;
-import database.Command.Command;
-import database.Command.CommandFactory;
+import database.Command;
+import database.command.factory.CommandFactory;
+import databasecontroller.DatabaseController;
 
 public class Controller implements ActionListener {
 
@@ -47,9 +47,9 @@ public class Controller implements ActionListener {
 			}
 			int id = Integer.parseInt((String) table.getValueAt(row, 0));
 			String name = (String) table.getValueAt(row, 1);
-			Announcement a = new Announcement(argumentsTextField.getText());
-			Customer c = new Customer(id, name);
-			board.addAnnouncement(a, c);
+			Announcement announcement = new Announcement(argumentsTextField.getText());
+			Customer customer = new Customer(id, name);
+			board.addAnnouncement(announcement, customer);
 			String[] announcements = board.printStrings();
 			annTextArea.setText("");
 			for(String line : announcements) {
@@ -61,16 +61,16 @@ public class Controller implements ActionListener {
 
 		model.setDataVector(TableDatabase.getData(), TableDatabase.getHeaders());     
 	}
-	private String getCommandName(ActionEvent e) {
-		Object o = e.getSource();
-		JButton b = null;
+	private String getCommandName(ActionEvent event) {
+		Object obj = event.getSource();
+		JButton button = null;
 		String buttonText = "";
 
-		if(o instanceof JButton)
-			b = (JButton)o;
+		if(obj instanceof JButton)
+			button = (JButton)obj;
 
-		if(b != null)
-			buttonText = b.getText().toLowerCase();
+		if(button != null)
+			buttonText = button.getText().toLowerCase();
 		return buttonText;
 	}
 

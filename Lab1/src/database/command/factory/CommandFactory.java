@@ -1,6 +1,13 @@
-package database.Command;
+package database.command.factory;
 
 import java.util.Arrays;
+
+import database.Command;
+import database.command.DatabaseDeleteCommand;
+import database.command.DatabaseInsertCommand;
+import database.command.DatabasePrintCommand;
+import database.command.DatabaseSearchCommand;
+import database.command.DatabaseUpdateCommand;
 
 public class CommandFactory {
 	/**

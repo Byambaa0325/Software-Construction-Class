@@ -1,6 +1,4 @@
-package database.Command;
-
-import database.Database;
+package database;
 
 public interface Command {
 	public void execute(Database db);

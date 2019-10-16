@@ -1,4 +1,4 @@
-package database.WritingStrategy;
+package database.writingstrategy;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,26 +8,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import database.Database;
+import database.DatabaseSavingStrategy;
 import database.Entity;
 
 public class TextFileStrategy implements DatabaseSavingStrategy{
 
-	public TextFileStrategy() {
-		
-	}
+	public TextFileStrategy() {}
 	@Override
 	public void save(String filename, Database db) {
 		PrintWriter writer = null;
+		
+		//Get the file
 		try {
 			writer = new PrintWriter(filename+".txt", "UTF-8");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (FileNotFoundException e) {			
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// TODO Auto-generated method stub
+		
+		//Retrieve data and write
 		Entity[] data = db.getData();
 		int indexCounter = 0;
 		for(Entity entity : data) {
@@ -40,23 +40,29 @@ public class TextFileStrategy implements DatabaseSavingStrategy{
 
 	@Override
 	public Entity[] read(String filename, Database db) {
-		// TODO Auto-generated method stub
 		ArrayList<Entity> lines = new ArrayList<>();
 		Scanner sc =null;
+		
+		//Get the file
 		try {
 			sc = new Scanner(new File(filename+".txt"));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println("FileNotFound");
 			return null;
 		}
-		while(sc.hasNextLine()) {
-			
+		
+		//Read all lines
+		while(sc.hasNextLine()) {			
 			String line = sc.nextLine();
+			
+			//Split on indexing
 			String parts[] = line.split("-");
 			line = parts[1];
+			
 			lines.add(new Entity(line.split(",")));
-		}		
+		}
+		
+		//Convert to entities
 		Entity[] toReturn = new Entity[lines.size()];
 		for(int i = 0 ; i< toReturn.length; i++) {
 			toReturn[i] = lines.get(i);

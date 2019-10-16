@@ -2,13 +2,13 @@ package admin;
 
 import java.util.Scanner;
 
+import announcementboard.AnnouncementBoard;
 import data.Announcement;
-import data.AnnouncementBoard;
 import data.Customer;
-import database.DatabaseController;
 import database.Entity;
-import database.Command.Command;
-import database.Command.CommandFactory;
+import database.command.factory.CommandFactory;
+import databasecontroller.DatabaseController;
+import database.Command;
 import database.CustomerDatabase;
 
 public class Admin {
@@ -24,20 +24,29 @@ public class Admin {
 		while(!exit) {
 			report();
 			String arguments = input.nextLine();
+			
+			//Check if special case announce command
 			if (arguments.equals("announce")) {
 				control.load();
 				addAnnouncement();
 				continue;
 			}
+			
+			//Build Command
 			Command command = factory.buildCommand(arguments.split(" "));
+			
+			//Unsuccessful attempt to build command
 			if (command == null) {
+				//Confirm exit
 				System.out.println("Command not recognized...");
 				System.out.println("Exit(Y/N)?");
 				arguments = input.nextLine();
-				if(arguments.startsWith("Y")){
-					exit = true;
-				}
-			}else {
+				
+				//Confirmed and exit
+				if(arguments.startsWith("Y")){exit = true;}
+			}
+			//Run the command
+			else {
 				control.runCommand(command);
 			}
 		}
@@ -51,7 +60,7 @@ public class Admin {
 		int index = Integer.parseInt(input.nextLine());
 
 		Announcement ann = new Announcement(content);
-
+		
 		if(index > db.getData().length) {
 			System.out.println("index not found in database");
 			return;

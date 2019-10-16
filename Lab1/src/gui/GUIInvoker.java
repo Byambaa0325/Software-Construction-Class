@@ -15,6 +15,6 @@ public class GUIInvoker {
     }
  
     public static void createAndShowGUI() throws Exception {
-        new GUI();
+        new SinglePageGUI();
     }
 }

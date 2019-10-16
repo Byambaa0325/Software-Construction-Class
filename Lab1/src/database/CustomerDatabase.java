@@ -7,7 +7,7 @@ import database.Database;
 import database.Entity;
 
 /**
- * Database Implementation for Customer object
+ * Data access object for Customers class
  */
 public class CustomerDatabase implements Database{
 
